@@ -12087,6 +12087,21 @@ High-power, low thermal resistance package.</description>
 <rectangle x1="-3.27" y1="-4.9" x2="-1.81" y2="-3.4" layer="21"/>
 <rectangle x1="1.81" y1="-4.9" x2="3.27" y2="-3.4" layer="21"/>
 </package>
+<package name="SMA-DIODE">
+<description>&lt;B&gt;Diode&lt;/B&gt;&lt;p&gt;
+Basic SMA packaged diode. Good for reverse polarization protection. Common part #: MBRA140</description>
+<wire x1="-2.3" y1="1" x2="-2.3" y2="1.45" width="0.2032" layer="21"/>
+<wire x1="-2.3" y1="1.45" x2="2.3" y2="1.45" width="0.2032" layer="21"/>
+<wire x1="2.3" y1="1.45" x2="2.3" y2="1" width="0.2032" layer="21"/>
+<wire x1="2.3" y1="-1" x2="2.3" y2="-1.45" width="0.2032" layer="21"/>
+<wire x1="2.3" y1="-1.45" x2="-2.3" y2="-1.45" width="0.2032" layer="21"/>
+<wire x1="-2.3" y1="-1.45" x2="-2.3" y2="-1" width="0.2032" layer="21"/>
+<wire x1="1" y1="1" x2="1" y2="-1" width="0.2032" layer="21"/>
+<smd name="A" x="-2.15" y="0" dx="1.27" dy="1.47" layer="1" rot="R180"/>
+<smd name="C" x="2.15" y="0" dx="1.27" dy="1.47" layer="1"/>
+<text x="-2.286" y="1.651" size="0.4064" layer="25">&gt;NAME</text>
+<text x="0.254" y="1.651" size="0.4064" layer="27">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="MOSFET-NCHANNEL-1">
@@ -12129,6 +12144,22 @@ High-power, low thermal resistance package.</description>
 <text x="-1.27" y="2.54" size="0.8128" layer="93">D</text>
 <text x="-1.27" y="-3.556" size="0.8128" layer="93">S</text>
 <text x="-5.08" y="-1.27" size="0.8128" layer="93">G</text>
+</symbol>
+<symbol name="DIODE-SCHOTTKY">
+<wire x1="-1.27" y1="-1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="0" x2="-1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="1.27" x2="1.778" y2="1.524" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.27" x2="0.762" y2="-1.524" width="0.254" layer="94"/>
+<text x="2.54" y="0.4826" size="1.778" layer="95">&gt;NAME</text>
+<text x="2.54" y="-2.3114" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="A" x="-2.54" y="0" visible="off" length="point" direction="pas"/>
+<pin name="C" x="2.54" y="0" visible="off" length="point" direction="pas" rot="R180"/>
+<wire x1="-2.54" y1="0" x2="-1.27" y2="0" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="0" x2="1.27" y2="0" width="0.1524" layer="94"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -12277,6 +12308,27 @@ High-power, low thermal resistance package.</description>
 <technologies>
 <technology name="">
 <attribute name="PROD_ID" value="TRAN-12988" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="B340A" prefix="D" uservalue="yes">
+<description>Schottky Diode&lt;br&gt;
+3A-40V</description>
+<gates>
+<gate name="G$1" symbol="DIODE-SCHOTTKY" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SMA-DIODE">
+<connects>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="C" pad="C"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="DIO-09886"/>
+<attribute name="VALUE" value="BA340A"/>
 </technology>
 </technologies>
 </device>
@@ -13333,6 +13385,15 @@ With round pins</description>
 <part name="U3" library="SparkFun-DigitalIC" deviceset="ATMEGA328P_TQFP" device="" value="ATMEGA328P_TQFP"/>
 <part name="GND2" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="C1" library="SparkFun-Passives" deviceset="CAP" device="0603-CAP" value="1u"/>
+<part name="Q2" library="SparkFun-DiscreteSemi" deviceset="MOSFET-NCHANNEL" device="2N7002PW"/>
+<part name="R2" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="3.3k"/>
+<part name="R3" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="220"/>
+<part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="SUPPLY3" library="SparkFun-Aesthetics" deviceset="5V" device=""/>
+<part name="D2" library="SparkFun-DiscreteSemi" deviceset="B340A" device="" value="BA340A"/>
+<part name="R19" library="SparkFun-Passives" deviceset="RESISTOR" device="0603-RES" value="3.3k"/>
+<part name="SUPPLY7" library="SparkFun-Aesthetics" deviceset="3.3V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13492,6 +13553,24 @@ With round pins</description>
 <instance part="GND32" gate="1" x="266.7" y="-121.92"/>
 <instance part="FRAME1" gate="G$1" x="40.64" y="-182.88"/>
 <instance part="FRAME1" gate="V" x="187.96" y="-182.88"/>
+<instance part="C1" gate="G$1" x="208.28" y="-114.3"/>
+<instance part="Q2" gate="G$1" x="337.82" y="-93.98" rot="MR90"/>
+<instance part="R2" gate="G$1" x="347.98" y="-106.68" smashed="yes" rot="R270">
+<attribute name="NAME" x="344.3986" y="-105.41" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="349.758" y="-105.41" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="R3" gate="G$1" x="358.14" y="-93.98" smashed="yes" rot="R180">
+<attribute name="NAME" x="359.41" y="-90.3986" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="359.41" y="-95.758" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="SUPPLY2" gate="G$1" x="337.82" y="-114.3" rot="R180"/>
+<instance part="SUPPLY3" gate="G$1" x="347.98" y="-114.3" rot="R180"/>
+<instance part="D2" gate="G$1" x="340.36" y="-134.62" rot="R180"/>
+<instance part="R19" gate="G$1" x="358.14" y="-134.62" smashed="yes" rot="R180">
+<attribute name="NAME" x="359.41" y="-131.0386" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="359.41" y="-136.398" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="SUPPLY7" gate="G$1" x="370.84" y="-132.08"/>
 </instances>
 <busses>
 </busses>
@@ -13542,7 +13621,11 @@ With round pins</description>
 <pinref part="U1" gate="G$1" pin="GND"/>
 <pinref part="GND8" gate="1" pin="GND"/>
 <wire x1="215.9" y1="-109.22" x2="213.36" y2="-109.22" width="0.1524" layer="91"/>
-<wire x1="213.36" y1="-109.22" x2="213.36" y2="-119.38" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="-109.22" x2="213.36" y2="-116.84" width="0.1524" layer="91"/>
+<pinref part="C1" gate="G$1" pin="2"/>
+<wire x1="213.36" y1="-116.84" x2="213.36" y2="-119.38" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="-116.84" x2="213.36" y2="-116.84" width="0.1524" layer="91"/>
+<junction x="213.36" y="-116.84"/>
 </segment>
 <segment>
 <pinref part="JP3" gate="G$1" pin="1"/>
@@ -13752,6 +13835,16 @@ With round pins</description>
 <wire x1="266.7" y1="-12.7" x2="266.7" y2="-10.16" width="0.1524" layer="91"/>
 <wire x1="266.7" y1="-10.16" x2="264.16" y2="-10.16" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="Q2" gate="G$1" pin="G"/>
+<pinref part="SUPPLY2" gate="G$1" pin="5V"/>
+<wire x1="337.82" y1="-101.6" x2="337.82" y2="-114.3" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R2" gate="G$1" pin="2"/>
+<pinref part="SUPPLY3" gate="G$1" pin="5V"/>
+<wire x1="347.98" y1="-111.76" x2="347.98" y2="-114.3" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="N$14" class="0">
 <segment>
@@ -13823,6 +13916,9 @@ With round pins</description>
 <wire x1="208.28" y1="-71.12" x2="208.28" y2="-106.68" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="3V3"/>
 <wire x1="208.28" y1="-106.68" x2="215.9" y2="-106.68" width="0.1524" layer="91"/>
+<pinref part="C1" gate="G$1" pin="1"/>
+<wire x1="208.28" y1="-109.22" x2="208.28" y2="-106.68" width="0.1524" layer="91"/>
+<junction x="208.28" y="-106.68"/>
 </segment>
 <segment>
 <pinref part="C9" gate="G$1" pin="1"/>
@@ -13886,6 +13982,12 @@ With round pins</description>
 <pinref part="SUPPLY24" gate="G$1" pin="3.3V"/>
 <pinref part="IC2" gate="G$1" pin="VDD"/>
 <wire x1="121.92" y1="-71.12" x2="121.92" y2="-73.66" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R19" gate="G$1" pin="1"/>
+<pinref part="SUPPLY7" gate="G$1" pin="3.3V"/>
+<wire x1="363.22" y1="-134.62" x2="370.84" y2="-134.62" width="0.1524" layer="91"/>
+<wire x1="370.84" y1="-134.62" x2="370.84" y2="-132.08" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -14017,20 +14119,6 @@ With round pins</description>
 <wire x1="149.86" y1="-99.06" x2="134.62" y2="-99.06" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="BT_TX" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="TX"/>
-<wire x1="215.9" y1="-78.74" x2="205.74" y2="-78.74" width="0.1524" layer="91"/>
-<label x="205.74" y="-78.74" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="BT_RX" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="RX"/>
-<wire x1="215.9" y1="-81.28" x2="205.74" y2="-81.28" width="0.1524" layer="91"/>
-<label x="205.74" y="-81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
 <net name="D7" class="0">
 <segment>
 <pinref part="J2" gate="G$1" pin="1"/>
@@ -14079,6 +14167,55 @@ With round pins</description>
 <pinref part="ISP1" gate="G$1" pin="MOSI"/>
 <wire x1="269.24" y1="-12.7" x2="269.24" y2="-10.16" width="0.1524" layer="91"/>
 <label x="269.24" y="-10.16" size="1.016" layer="95" rot="R90" xref="yes"/>
+</segment>
+</net>
+<net name="N$7" class="0">
+<segment>
+<pinref part="Q2" gate="G$1" pin="D"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="342.9" y1="-93.98" x2="347.98" y2="-93.98" width="0.1524" layer="91"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="347.98" y1="-93.98" x2="353.06" y2="-93.98" width="0.1524" layer="91"/>
+<wire x1="347.98" y1="-101.6" x2="347.98" y2="-93.98" width="0.1524" layer="91"/>
+<junction x="347.98" y="-93.98"/>
+</segment>
+</net>
+<net name="TX_5V" class="0">
+<segment>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="363.22" y1="-93.98" x2="368.3" y2="-93.98" width="0.1524" layer="91"/>
+<label x="368.3" y="-93.98" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="TX"/>
+<wire x1="215.9" y1="-78.74" x2="205.74" y2="-78.74" width="0.1524" layer="91"/>
+<label x="205.74" y="-78.74" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="Q2" gate="G$1" pin="S"/>
+<wire x1="332.74" y1="-93.98" x2="322.58" y2="-93.98" width="0.1524" layer="91"/>
+<label x="322.58" y="-93.98" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="RX_5V" class="0">
+<segment>
+<pinref part="D2" gate="G$1" pin="C"/>
+<wire x1="337.82" y1="-134.62" x2="325.12" y2="-134.62" width="0.1524" layer="91"/>
+<label x="325.12" y="-134.62" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="RX"/>
+<wire x1="215.9" y1="-81.28" x2="205.74" y2="-81.28" width="0.1524" layer="91"/>
+<label x="205.74" y="-81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="D2" gate="G$1" pin="A"/>
+<pinref part="R19" gate="G$1" pin="2"/>
+<wire x1="342.9" y1="-134.62" x2="347.98" y2="-134.62" width="0.1524" layer="91"/>
+<wire x1="347.98" y1="-134.62" x2="353.06" y2="-134.62" width="0.1524" layer="91"/>
+<wire x1="347.98" y1="-134.62" x2="347.98" y2="-139.7" width="0.1524" layer="91"/>
+<junction x="347.98" y="-134.62"/>
+<label x="347.98" y="-139.7" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
 </nets>
@@ -14319,14 +14456,14 @@ With round pins</description>
 <label x="408.94" y="116.84" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="BT_TX" class="0">
+<net name="TX_5V" class="0">
 <segment>
 <pinref part="U3" gate="U$1" pin="PD2(INT0)"/>
 <wire x1="398.78" y1="101.6" x2="408.94" y2="101.6" width="0.1524" layer="91"/>
 <label x="408.94" y="101.6" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="BT_RX" class="0">
+<net name="RX_5V" class="0">
 <segment>
 <pinref part="U3" gate="U$1" pin="PD3(INT1)"/>
 <wire x1="398.78" y1="99.06" x2="408.94" y2="99.06" width="0.1524" layer="91"/>
